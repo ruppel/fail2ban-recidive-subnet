@@ -1,0 +1,14 @@
+# fail2ban jail configuration
+* To be added to your jail.local file
+# Keep this jail at the end, even after the recidive one
+
+[recidive-subnet]
+enabled = true
+# ban & send an e-mail with whois report and relevant log lines
+# to the destemail.
+action = iptables-subnet[name=%(__name__)s, port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
+         %(mta)s-whois-lines[name=%(__name__)s, dest="%(destemail)s", logpath=%(logpath)s, chain="%(chain)s"]
+logpath = /var/log/fail2ban-subnet.log
+bantime = 26week
+findtime= 1day
+maxretry= 1 ; once we have a line, we ban
