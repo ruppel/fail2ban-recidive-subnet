@@ -21,6 +21,8 @@ function isincluded(name)
 BEGIN {
   analyze_start = last-findtime
   split(excluded_jails, excluded, " ")
+  now = systime()
+  print logtime(now)" "now" Check fail2ban log"
 }
 
 (time=unixtime($1, $2)) > analyze_start &&
