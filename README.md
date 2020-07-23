@@ -80,7 +80,7 @@ The `jail.local` file given in this repository should not override your `jail.lo
 Then you can adapt the configuration to your needs.
 
 - `enabled`
-  - This enabled or disabled the jail
+  - This enables or disables the jail
   - My setting:
     - `enabled = true`
 - `action`
@@ -90,22 +90,23 @@ Then you can adapt the configuration to your needs.
     - `action = iptables-subnet[name=%(__name__)s, port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"`
     - `%(mta)s-whois-lines[name=%(__name__)s, dest="%(destemail)s", logpath=%(logpath)s, chain="%(chain)s"]`
 - `logpath`
-  - The path to the file where the filter should parse
+  - The path to the file which the filter should parse
   - This is the file, which is written by the scripts above
   - My setting:
     - `logpath = /var/log/fail2ban-subnet.log`
 - `bantime`
   - Time period how long the subnet should be banned
+  - As I'm really bored by those attackers, I give them half a year!
   - My setting:
     - `bantime = 26week`
 - `findtime`
   - A subnet is banned if it has generated `maxretry` logs during the last `findtime` seconds.
   - A change only makes sense, if you change the `maxretry` to something other than `1`
   - My setting:
-    - `findtime= 1day`
+    - `findtime = 1day`
 - `maxretry`
   - `maxretry` is the number of founds before a subnet get banned.
   - As most of the work is done by the scripts which generate the `fail2ban-subnet.log` once a subnet is found it should be banned directly, so I set `maxretry` to `1`
   - If you don't want to be as aggressive as I, then better change the `maxips` config above to a higher value or lower the `bantime`
   - My setting:
-    - `maxretry= 1`
+    - `maxretry = 1`
